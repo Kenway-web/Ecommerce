@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "946934227466",
+    "project_id": "ekkart-a402a",
+    "storage_bucket": "ekkart-a402a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:946934227466:android:c538c889700cfad3bff5f3",
+        "android_client_info": {
+          "package_name": "eu.kenway.ecommerce"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "946934227466-9pkhhl9n5ppm82d2dj3jjn220ono1spr.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "eu.kenway.ecommerce",
+            "certificate_hash": "2279bf679bbd1565a2c0f2d65a67581b039e985b"
+          }
+        },
+        {
+          "client_id": "946934227466-8ajs153rcvqd9a7no3g1ctlbpg4vsrmu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAEu2jM_KF4rJWyjUe-ZxnpJQW6y9mwgZc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "946934227466-8ajs153rcvqd9a7no3g1ctlbpg4vsrmu.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

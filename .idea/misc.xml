@@ -5,8 +5,10 @@
       <map>
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.14010416666666667" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.17119565217391305" />
+        <entry key="app/src/main/res/layout/activity_splash_screen.xml" value="0.2947916666666667" />
         <entry key="app/src/main/res/layout/fragment_login.xml" value="0.21183133332625678" />
-        <entry key="app/src/main/res/layout/fragment_register.xml" value="0.17119565217391305" />
+        <entry key="app/src/main/res/layout/fragment_products.xml" value="0.2947916666666667" />
+        <entry key="app/src/main/res/layout/fragment_register.xml" value="0.3577789306640625" />
       </map>
     </option>
   </component>

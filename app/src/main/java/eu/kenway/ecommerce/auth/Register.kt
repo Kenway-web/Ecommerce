@@ -1,13 +1,15 @@
 package eu.kenway.ecommerce.auth
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
 import eu.kenway.ecommerce.R
 import eu.kenway.ecommerce.databinding.FragmentRegisterBinding
 
@@ -26,34 +28,45 @@ class Register : Fragment() {
         binding= FragmentRegisterBinding.inflate(inflater,container,false)
         firebaseAuth= FirebaseAuth.getInstance()
 
+        val actionBar = (activity as AppCompatActivity?)!!.supportActionBar
+
+        if (actionBar != null) {
+            actionBar.setHomeAsUpIndicator(R.drawable.ic_baseline_arrow_back_ios_24)
+        }
 
 
         binding.button.setOnClickListener{
+            val firstname=binding.firstnamet.toString()
+            val lastname=binding.lastname.toString()
             val email=binding.emailEt.text.toString()
-            val password=binding.passET.text.toString()
-            val confirmpass=binding.confirmPassEt.text.toString()
+            val password=binding.password.text.toString()
+            val confirmpass=binding.confirmpass.text.toString()
 
-            if(email.isNotEmpty()&&password.isNotEmpty()&&confirmpass.isNotEmpty())
+            if(email.isNotEmpty()&&password.isNotEmpty()&&confirmpass.isNotEmpty()&&firstname.isNotEmpty()&&lastname.isNotEmpty())
             {
                 if(password==confirmpass)
                 {
                    firebaseAuth.createUserWithEmailAndPassword(email,password).addOnCompleteListener{
                        if(it.isSuccessful)
                        {
+                           val firebaseUser:FirebaseUser=it.result!!.user!!
+                           Snackbar.make(binding.root, "You have registered successfully.Your user id is ${firebaseUser.uid}", Snackbar.LENGTH_SHORT).show()
+
                            findNavController().navigate(R.id.action_register_to_login)
                        }
                        else{
-                           Toast.makeText(requireContext(),it.exception.toString(),Toast.LENGTH_LONG).show()
+                           Snackbar.make(binding.root, it.exception!!.message.toString(), Snackbar.LENGTH_SHORT).show()
                        }
                    }
                 }
                 else{
-                     Toast.makeText(requireContext(),"Password not matching",Toast.LENGTH_LONG).show()
+                    // Toast.makeText(requireContext(),"Password not matching",Toast.LENGTH_LONG).show()
+                    Snackbar.make(binding.root, "Password not matching", Snackbar.LENGTH_SHORT).show()
                 }
 
             }
             else{
-                Toast.makeText(requireContext(),"Password not matching",Toast.LENGTH_LONG).show()
+                Snackbar.make(binding.root, "Enter credentials", Snackbar.LENGTH_SHORT).show()
             }
 
 

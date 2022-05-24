@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
 import eu.kenway.ecommerce.R
 import eu.kenway.ecommerce.databinding.FragmentLoginBinding
 
@@ -55,7 +56,8 @@ class Login : Fragment() {
             firebaseAuth.signInWithEmailAndPassword(email,password).addOnCompleteListener{
                 if(it.isSuccessful)
                 {
-                    findNavController().navigate(R.id.action_login_to_products2)
+                    val firebaseUser:FirebaseUser=it.result!!.user!!
+
                 }
                 else{
                     Toast.makeText(requireContext(),it.exception.toString(), Toast.LENGTH_LONG).show()
@@ -69,6 +71,7 @@ class Login : Fragment() {
 
 
     }
+
 
 
 }

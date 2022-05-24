@@ -20,7 +20,7 @@
     <fragment
         android:id="@+id/register"
         android:name="eu.kenway.ecommerce.auth.Register"
-        android:label="fragment_register"
+        android:label="Register"
         tools:layout="@layout/fragment_register" >
         <action
             android:id="@+id/action_register_to_login"
@@ -28,7 +28,7 @@
     </fragment>
     <fragment
         android:id="@+id/products2"
-        android:name="eu.kenway.ecommerce.Products"
+        android:name="eu.kenway.ecommerce.auth.Products"
         android:label="fragment_products"
         tools:layout="@layout/fragment_products" />
 </navigation>

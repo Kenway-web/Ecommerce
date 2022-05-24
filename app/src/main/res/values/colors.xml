@@ -10,5 +10,8 @@
 
 
     <color name="yellow">#FFC801</color>
+    <color name="colorSnackBarError">#FF6200EE</color>
+    <color name="colorSnackBarSuccess">#FF6200EE</color>
+    <color name="red">#FF0000</color>
 
 </resources>

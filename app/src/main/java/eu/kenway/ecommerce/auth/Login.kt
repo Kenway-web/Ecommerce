@@ -1,5 +1,6 @@
 package eu.kenway.ecommerce.auth
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -10,6 +11,7 @@ import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
+import eu.kenway.ecommerce.ProductsActivity
 import eu.kenway.ecommerce.R
 import eu.kenway.ecommerce.databinding.FragmentLoginBinding
 
@@ -57,6 +59,7 @@ class Login : Fragment() {
                 if(it.isSuccessful)
                 {
                     val firebaseUser:FirebaseUser=it.result!!.user!!
+                   startActivity(Intent(requireContext(),ProductsActivity::class.java))
 
                 }
                 else{

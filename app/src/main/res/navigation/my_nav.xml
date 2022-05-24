@@ -13,22 +13,14 @@
         <action
             android:id="@+id/action_login_to_register"
             app:destination="@id/register" />
-        <action
-            android:id="@+id/action_login_to_products2"
-            app:destination="@id/products2" />
     </fragment>
     <fragment
         android:id="@+id/register"
         android:name="eu.kenway.ecommerce.auth.Register"
-        android:label="Register"
+        android:label="Register Account"
         tools:layout="@layout/fragment_register" >
         <action
             android:id="@+id/action_register_to_login"
             app:destination="@id/login" />
     </fragment>
-    <fragment
-        android:id="@+id/products2"
-        android:name="eu.kenway.ecommerce.auth.Products"
-        android:label="fragment_products"
-        tools:layout="@layout/fragment_products" />
 </navigation>

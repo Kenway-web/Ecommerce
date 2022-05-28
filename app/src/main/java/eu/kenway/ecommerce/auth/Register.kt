@@ -6,15 +6,19 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.ktx.Firebase
 import eu.kenway.ecommerce.R
 import eu.kenway.ecommerce.R.*
 import eu.kenway.ecommerce.databinding.FragmentRegisterBinding
+import eu.kenway.ecommerce.firestore.Firetoreclass
+import eu.kenway.ecommerce.firestore.models.User
 
 
 class Register : Fragment() {
@@ -76,10 +80,22 @@ class Register : Fragment() {
                                 val firebaseUser: FirebaseUser = it.result!!.user!!
 
 
-                                 Snackbar.make(binding.root, "You have registered successfully.Your user id is ${firebaseUser.uid}", Snackbar.LENGTH_SHORT).
-                                 setBackgroundTint(Color.GREEN).show()
+                                val user=User(
+                                    firebaseUser.uid,
+                                    firstname.trim(),
+                                    lastname.trim(),
+                                    email.trim(),
+
+                                )
+
+
+                              Firetoreclass().registerUser(this,user)
+
+                                // Snackbar.make(binding.root, "You have registered successfully.Your user id is ${firebaseUser.uid}", Snackbar.LENGTH_SHORT).
+                               //  setBackgroundTint(Color.GREEN).show()
 
                                 findNavController().navigate(R.id.action_register_to_login)
+
 
                             } else {
                                 mProgressDialog.hide()
@@ -109,5 +125,17 @@ class Register : Fragment() {
         return binding.root
     }
 
+
+    fun userRegisterSuccess()
+    {
+        mProgressDialog.hide()
+
+        Toast.makeText(
+           requireActivity(),
+            resources.getString(R.string.register_success),
+            Toast.LENGTH_SHORT
+        ).show()
+
+    }
 }
 

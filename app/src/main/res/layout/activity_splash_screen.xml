@@ -7,22 +7,31 @@
     android:background="@color/yellow">
 
 
-  <androidx.appcompat.widget.AppCompatCheckedTextView
+  <com.airbnb.lottie.LottieAnimationView
+      android:id="@+id/LtAnimation"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintHorizontal_bias="0.5"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toTopOf="parent"
+      app:layout_constraintVertical_bias="0.32"
+      app:lottie_autoPlay="true"
+      app:lottie_loop="true"
+      app:lottie_rawRes="@raw/shopping" />
+
+  <TextView
       android:id="@+id/textView2"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
+      android:layout_marginBottom="228dp"
       android:fontFamily="@font/adelia"
-      android:text="Ekkart Shopping"
+      android:text="@string/ekkart"
       android:textColor="@color/black"
-      android:textSize="30sp"
-      android:textStyle="bold"
+      android:textSize="38sp"
       app:layout_constraintBottom_toBottomOf="parent"
       app:layout_constraintEnd_toEndOf="parent"
-
-      app:layout_constraintHorizontal_bias="0.491"
-      app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toTopOf="parent"
-      app:layout_constraintVertical_bias="0.446" />
-
-
+      app:layout_constraintHorizontal_bias="0.5"
+      app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/my_nav_2"
+    app:startDestination="@id/items">
+
+    <fragment
+        android:id="@+id/items"
+        android:name="eu.kenway.ecommerce.Items"
+        android:label="fragment_items"
+        tools:layout="@layout/fragment_items" >
+        <action
+            android:id="@+id/action_items_to_help"
+            app:destination="@id/help" />
+    </fragment>
+    <fragment
+        android:id="@+id/help"
+        android:name="eu.kenway.ecommerce.Help"
+        android:label="fragment_help"
+        tools:layout="@layout/fragment_help" />
+</navigation>

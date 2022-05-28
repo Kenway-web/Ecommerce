@@ -4,14 +4,21 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="../../Library/Android/sdk/platforms/android-32/data/res/layout/auto_complete_list.xml" value="0.2947916666666667" />
+        <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.131" />
+        <entry key="app/src/main/res/drawable/ic_baseline_arrow_back_ios_24.xml" value="0.131" />
+        <entry key="app/src/main/res/drawable/ic_baseline_home_24.xml" value="0.131" />
+        <entry key="app/src/main/res/drawable/ic_baseline_shopping_cart_24.xml" value="0.131" />
+        <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.131" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.14010416666666667" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.17119565217391305" />
         <entry key="app/src/main/res/layout/activity_products.xml" value="0.2947916666666667" />
-        <entry key="app/src/main/res/layout/activity_splash_screen.xml" value="0.2947916666666667" />
+        <entry key="app/src/main/res/layout/activity_splash_screen.xml" value="0.2954742431640625" />
         <entry key="app/src/main/res/layout/dialog_progress.xml" value="0.2947916666666667" />
         <entry key="app/src/main/res/layout/fragment_login.xml" value="0.21183133332625678" />
         <entry key="app/src/main/res/layout/fragment_products.xml" value="0.2947916666666667" />
         <entry key="app/src/main/res/layout/fragment_register.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/nav_header.xml" value="0.2947916666666667" />
+        <entry key="app/src/main/res/menu/nav_menu.xml" value="0.2947916666666667" />
       </map>
     </option>
   </component>

@@ -3,20 +3,25 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/my_nav_2"
-    app:startDestination="@id/items">
-
+    app:startDestination="@id/cart">
     <fragment
-        android:id="@+id/items"
-        android:name="eu.kenway.ecommerce.Items"
-        android:label="fragment_items"
-        tools:layout="@layout/fragment_items" >
-        <action
-            android:id="@+id/action_items_to_help"
-            app:destination="@id/help" />
-    </fragment>
+        android:id="@+id/cart"
+        android:name="eu.kenway.ecommerce.products.items.Cart"
+        android:label="fragment_cart"
+        tools:layout="@layout/fragment_cart" />
     <fragment
-        android:id="@+id/help"
-        android:name="eu.kenway.ecommerce.Help"
+        android:id="@+id/feedback2"
+        android:name="eu.kenway.ecommerce.products.items.Feedback"
+        android:label="fragment_feedback"
+        tools:layout="@layout/fragment_feedback" />
+    <fragment
+        android:id="@+id/help2"
+        android:name="eu.kenway.ecommerce.products.items.Help"
         android:label="fragment_help"
         tools:layout="@layout/fragment_help" />
+    <fragment
+        android:id="@+id/orders2"
+        android:name="eu.kenway.ecommerce.products.items.orders"
+        android:label="fragment_orders"
+        tools:layout="@layout/fragment_orders" />
 </navigation>

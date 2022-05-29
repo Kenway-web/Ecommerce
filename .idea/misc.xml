@@ -11,10 +11,14 @@
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.131" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.14010416666666667" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.17119565217391305" />
-        <entry key="app/src/main/res/layout/activity_products.xml" value="0.2947916666666667" />
+        <entry key="app/src/main/res/layout/activity_products.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_splash_screen.xml" value="0.2954742431640625" />
         <entry key="app/src/main/res/layout/dialog_progress.xml" value="0.2947916666666667" />
-        <entry key="app/src/main/res/layout/fragment_login.xml" value="0.21183133332625678" />
+        <entry key="app/src/main/res/layout/fragment_cart.xml" value="0.2947916666666667" />
+        <entry key="app/src/main/res/layout/fragment_feedback.xml" value="0.2947916666666667" />
+        <entry key="app/src/main/res/layout/fragment_home.xml" value="0.21784420289855072" />
+        <entry key="app/src/main/res/layout/fragment_login.xml" value="0.18534512727156927" />
+        <entry key="app/src/main/res/layout/fragment_orders.xml" value="0.19429347826086957" />
         <entry key="app/src/main/res/layout/fragment_products.xml" value="0.2947916666666667" />
         <entry key="app/src/main/res/layout/fragment_register.xml" value="0.1" />
         <entry key="app/src/main/res/layout/nav_header.xml" value="0.2947916666666667" />

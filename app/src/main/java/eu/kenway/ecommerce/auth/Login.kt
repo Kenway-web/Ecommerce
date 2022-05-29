@@ -1,6 +1,8 @@
 package eu.kenway.ecommerce.auth
 
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -11,26 +13,31 @@ import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
-import eu.kenway.ecommerce.Products
+import eu.kenway.ecommerce.products.Products
 import eu.kenway.ecommerce.R
 import eu.kenway.ecommerce.databinding.FragmentLoginBinding
 import eu.kenway.ecommerce.firestore.Firetoreclass
 import eu.kenway.ecommerce.firestore.models.User
+import kotlin.properties.Delegates
 
 
 class Login : Fragment() {
 
     private lateinit var bindinglogin: FragmentLoginBinding
     private lateinit var firebaseAuth: FirebaseAuth
+   private lateinit var sharedPreferences: SharedPreferences
 
+    var isRemembered=false
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
 
+        sharedPreferences= requireActivity().getSharedPreferences("SHARED_PREF", Context.MODE_PRIVATE)
 
         bindinglogin = FragmentLoginBinding.inflate(inflater, container, false)
+        isRemembered=sharedPreferences.getBoolean("CHECKBOX",false)
 
 
         firebaseAuth = FirebaseAuth.getInstance()
@@ -40,10 +47,21 @@ class Login : Fragment() {
         }
 
 
-        bindinglogin.button.setOnClickListener {
 
+
+
+
+
+        bindinglogin.button.setOnClickListener {
             val email = bindinglogin.emailEt.text.toString()
             val password = bindinglogin.passET.text.toString()
+
+
+
+            val editor:SharedPreferences.Editor=sharedPreferences.edit()
+            editor.putString("EMAIL",email)
+
+            editor.apply()
 
             checkCredentials(email, password)
 
@@ -59,10 +77,14 @@ class Login : Fragment() {
         if (email.isNotEmpty() && password.isNotEmpty()) {
 
             firebaseAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener {
+
                 if (it.isSuccessful) {
+
+
+
                     val firebaseUser: FirebaseUser = it.result!!.user!!
                     Firetoreclass().getUserDetails(this@Login)
-                    startActivity(Intent(requireContext(),Products::class.java))
+                    startActivity(Intent(requireContext(), Products::class.java))
 
                 } else {
                     Toast.makeText(requireContext(), it.exception.toString(), Toast.LENGTH_LONG)

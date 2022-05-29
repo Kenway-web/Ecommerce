@@ -12,7 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Ecommerce">
         <activity
-            android:name=".Products"
+            android:name=".products.Products"
             android:exported="false" />
         <activity
             android:name=".ProductsActivity"

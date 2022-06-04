@@ -1,5 +1,6 @@
   package eu.kenway.ecommerce.products
 
+
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
@@ -22,14 +23,19 @@ import com.denzcoskun.imageslider.models.SlideModel
 import com.google.android.material.navigation.NavigationView
 import eu.kenway.ecommerce.MainActivity
 import eu.kenway.ecommerce.R
+
+import eu.kenway.ecommerce.api.Qservice
+import eu.kenway.ecommerce.api.RetrofitHelper
 import eu.kenway.ecommerce.databinding.ActivityProductsBinding
 import eu.kenway.ecommerce.products.items.*
+
 
   class Products : AppCompatActivity() {
 
     lateinit var binding: ActivityProductsBinding
     lateinit var toggle: ActionBarDrawerToggle
     lateinit var preferences: SharedPreferences
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -39,6 +45,7 @@ import eu.kenway.ecommerce.products.items.*
 
         preferences=getSharedPreferences("SHARED_PREF",Context.MODE_PRIVATE)
      val email=preferences.getString("EMAIL","")
+
 
         binding.apply {
             toggle= ActionBarDrawerToggle(this@Products,drawerLayout,
@@ -78,10 +85,10 @@ import eu.kenway.ecommerce.products.items.*
                     R.id.Home -> supportFragmentManager.beginTransaction().replace(R.id.framelayout, Home()).commit()
                     R.id.Viewcart -> supportFragmentManager.beginTransaction().replace(R.id.framelayout,Cart()).commit()
                     R.id.orders -> supportFragmentManager.beginTransaction().replace(R.id.framelayout,orders()).commit()
-                    R.id.feedback ->supportFragmentManager.beginTransaction().replace(R.id.framelayout,Feedback()).commit()
-                    R.id.help -> supportFragmentManager.beginTransaction().replace(R.id.framelayout,Help()).commit()
-                    R.id.Logout ->{
-                         val editor:SharedPreferences.Editor=preferences.edit()
+                            R.id.feedback ->supportFragmentManager.beginTransaction().replace(R.id.framelayout,Feedback()).commit()
+                            R.id.help -> supportFragmentManager.beginTransaction().replace(R.id.framelayout,Help()).commit()
+                            R.id.Logout ->{
+                                 val editor:SharedPreferences.Editor=preferences.edit()
                         editor.clear()
                         editor.apply()
                         startActivity(Intent(this@Products,MainActivity::class.java))
@@ -104,4 +111,5 @@ import eu.kenway.ecommerce.products.items.*
             }
             return super.onOptionsItemSelected(item)
         }
+
     }

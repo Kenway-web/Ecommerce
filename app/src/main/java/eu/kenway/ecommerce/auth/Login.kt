@@ -48,10 +48,6 @@ class Login : Fragment() {
 
 
 
-
-
-
-
         bindinglogin.button.setOnClickListener {
             val email = bindinglogin.emailEt.text.toString()
             val password = bindinglogin.passET.text.toString()

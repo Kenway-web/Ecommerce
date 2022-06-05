@@ -3,25 +3,19 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/my_nav_2"
-    app:startDestination="@id/cart">
+    app:startDestination="@id/home2">
     <fragment
-        android:id="@+id/cart"
-        android:name="eu.kenway.ecommerce.products.items.Cart"
-        android:label="fragment_cart"
-        tools:layout="@layout/fragment_cart" />
+        android:id="@+id/home2"
+        android:name="eu.kenway.ecommerce.products.items.Home"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_home2_to_belongingsFragment"
+            app:destination="@id/belongingsFragment" />
+    </fragment>
     <fragment
-        android:id="@+id/feedback2"
-        android:name="eu.kenway.ecommerce.products.items.Feedback"
-        android:label="fragment_feedback"
-        tools:layout="@layout/fragment_feedback" />
-    <fragment
-        android:id="@+id/help2"
-        android:name="eu.kenway.ecommerce.products.items.Help"
-        android:label="fragment_help"
-        tools:layout="@layout/fragment_help" />
-    <fragment
-        android:id="@+id/orders2"
-        android:name="eu.kenway.ecommerce.products.items.orders"
-        android:label="fragment_orders"
-        tools:layout="@layout/fragment_orders" />
+        android:id="@+id/belongingsFragment"
+        android:name="eu.kenway.ecommerce.BelongingsFragment"
+        android:label="fragment_belongings"
+        tools:layout="@layout/fragment_belongings" />
 </navigation>

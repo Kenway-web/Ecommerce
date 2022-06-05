@@ -17,6 +17,7 @@
         <entry key="app/src/main/res/layout/activity_splash_screen.xml" value="0.2954742431640625" />
         <entry key="app/src/main/res/layout/dialog_progress.xml" value="0.2947916666666667" />
         <entry key="app/src/main/res/layout/each_item.xml" value="0.23324275362318841" />
+        <entry key="app/src/main/res/layout/fragment_belongings.xml" value="0.1897644927536232" />
         <entry key="app/src/main/res/layout/fragment_cart.xml" value="0.2947916666666667" />
         <entry key="app/src/main/res/layout/fragment_feedback.xml" value="0.25245513916015627" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.16426754274230068" />
@@ -24,6 +25,7 @@
         <entry key="app/src/main/res/layout/fragment_orders.xml" value="0.19429347826086957" />
         <entry key="app/src/main/res/layout/fragment_products.xml" value="0.2947916666666667" />
         <entry key="app/src/main/res/layout/fragment_register.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/item_row.xml" value="0.23324275362318841" />
         <entry key="app/src/main/res/layout/nav_header.xml" value="0.2947916666666667" />
         <entry key="app/src/main/res/menu/nav_menu.xml" value="0.2947916666666667" />
       </map>

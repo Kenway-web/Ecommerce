@@ -24,8 +24,7 @@ import com.google.android.material.navigation.NavigationView
 import eu.kenway.ecommerce.MainActivity
 import eu.kenway.ecommerce.R
 
-import eu.kenway.ecommerce.api.Qservice
-import eu.kenway.ecommerce.api.RetrofitHelper
+
 import eu.kenway.ecommerce.databinding.ActivityProductsBinding
 import eu.kenway.ecommerce.products.items.*
 

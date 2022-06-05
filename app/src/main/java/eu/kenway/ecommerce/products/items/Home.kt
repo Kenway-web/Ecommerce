@@ -9,24 +9,25 @@ import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import com.denzcoskun.imageslider.ImageSlider
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.denzcoskun.imageslider.models.SlideModel
 import eu.kenway.ecommerce.R
-import eu.kenway.ecommerce.api.Qservice
-import eu.kenway.ecommerce.api.RetrofitHelper
+
 import eu.kenway.ecommerce.databinding.FragmentHomeBinding
-
-import eu.kenway.ecommerce.products.Belongings
-import eu.kenway.ecommerce.products.ProductsAdapter
-
-import retrofit2.create
+import eu.kenway.items.Repository.ItemRepository
+import eu.kenway.items.api.ItemService
+import eu.kenway.items.api.ProductsAdapter
+import eu.kenway.items.api.RetrofitHelper
+import eu.kenway.items.viewmodel.MainViewModel
+import eu.kenway.items.viewmodel.Mainviewmodelfactory
 
 
 class Home : Fragment() {
 
     private lateinit var bindingHome:FragmentHomeBinding
-    private var nameList : MutableList<Belongings> = mutableListOf()
-    private lateinit var sampleAdapter: ProductsAdapter
+    private lateinit var adapter : ProductsAdapter
+    lateinit var mainViewModel: MainViewModel
 
 
 
@@ -39,6 +40,13 @@ class Home : Fragment() {
         (activity as AppCompatActivity).supportActionBar?.title = "Home"
 
 
+        val recycle=bindingHome.recyclerView
+        recycle.layoutManager=LinearLayoutManager(requireContext())
+
+        val quoteService= RetrofitHelper.getInstance().create(ItemService::class.java)
+        val repository= ItemRepository(quoteService)
+        mainViewModel= ViewModelProvider(this, Mainviewmodelfactory(repository)).get(MainViewModel::class.java)
+
 
         val imageList = ArrayList<SlideModel>() //
         imageList.add(SlideModel(R.drawable.banner_01, "The animal population decreased by 58 percent in 42 years."))
@@ -47,7 +55,16 @@ class Home : Fragment() {
 
 
 
+     bindingHome.imageSlider.setImageList(imageList)
 
+
+        mainViewModel.items.observe(viewLifecycleOwner, Observer {
+            Log.d("Key1",it.data.toString())
+            val product = it!!.data
+            adapter = ProductsAdapter(product)
+            recycle.adapter = adapter
+
+        })
 
         return bindingHome.root
     }

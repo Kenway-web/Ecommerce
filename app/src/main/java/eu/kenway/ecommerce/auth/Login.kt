@@ -1,5 +1,6 @@
 package eu.kenway.ecommerce.auth
 
+import android.app.Dialog
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
@@ -26,6 +27,7 @@ class Login : Fragment() {
     private lateinit var bindinglogin: FragmentLoginBinding
     private lateinit var firebaseAuth: FirebaseAuth
    private lateinit var sharedPreferences: SharedPreferences
+    private lateinit var mProgressDialog: Dialog
 
     var isRemembered=false
 
@@ -39,6 +41,10 @@ class Login : Fragment() {
         bindinglogin = FragmentLoginBinding.inflate(inflater, container, false)
         isRemembered=sharedPreferences.getBoolean("CHECKBOX",false)
 
+        mProgressDialog = Dialog(requireContext())
+        mProgressDialog.setContentView(R.layout.dialog_progress)
+        mProgressDialog.setCancelable(false)
+        mProgressDialog.setCanceledOnTouchOutside(false)
 
         firebaseAuth = FirebaseAuth.getInstance()
 
@@ -51,6 +57,7 @@ class Login : Fragment() {
         bindinglogin.button.setOnClickListener {
             val email = bindinglogin.emailEt.text.toString()
             val password = bindinglogin.passET.text.toString()
+            mProgressDialog.show()
 
 
 
@@ -72,23 +79,26 @@ class Login : Fragment() {
 
         if (email.isNotEmpty() && password.isNotEmpty()) {
 
+
             firebaseAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener {
 
                 if (it.isSuccessful) {
 
-
+                    mProgressDialog.hide()
 
                     val firebaseUser: FirebaseUser = it.result!!.user!!
                     Firetoreclass().getUserDetails(this@Login)
                     startActivity(Intent(requireContext(), Products::class.java))
 
                 } else {
+                    mProgressDialog.hide()
                     Toast.makeText(requireContext(), it.exception.toString(), Toast.LENGTH_LONG)
                         .show()
                 }
             }
 
         } else {
+            mProgressDialog.hide()
             Toast.makeText(requireContext(), "Password not matching", Toast.LENGTH_LONG).show()
         }
 

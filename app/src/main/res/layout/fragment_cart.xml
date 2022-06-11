@@ -1,17 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".products.items.Cart">
-
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Cart"
-        android:textSize="30sp"
-        android:textStyle="bold"
+        android:id="@+id/recyclerViewCart"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        tools:listitem="@layout/cartdetails"
+        android:layout_marginBottom="100dp"
         />
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_marginTop="620dp"
+        >
+
+        <TextView
+            android:id="@+id/totalprice"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="price:"
+            android:textSize="30dp"
+            android:textStyle="bold" />
+
+    </FrameLayout>
+
+
+
+
 
 </FrameLayout>

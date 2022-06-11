@@ -12,6 +12,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Ecommerce">
         <activity
+            android:name=".BelongingActivity"
+            android:exported="false" />
+        <activity
+            android:name=".saMPLEACTIVITY"
+            android:exported="false" />
+        <activity
             android:name=".products.Products"
             android:exported="false" />
         <activity

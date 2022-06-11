@@ -4,22 +4,12 @@
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
-import android.icu.text.CaseMap
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
 import android.view.View
-import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
-import androidx.drawerlayout.widget.DrawerLayout
-import androidx.fragment.app.Fragment
-import androidx.navigation.NavController
-import androidx.navigation.findNavController
-import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.setupActionBarWithNavController
-import com.denzcoskun.imageslider.models.SlideModel
 import com.google.android.material.navigation.NavigationView
 import eu.kenway.ecommerce.MainActivity
 import eu.kenway.ecommerce.R
@@ -27,6 +17,7 @@ import eu.kenway.ecommerce.R
 
 import eu.kenway.ecommerce.databinding.ActivityProductsBinding
 import eu.kenway.ecommerce.products.items.*
+import eu.kenway.ecommerce.products.items.orders.orders
 
 
   class Products : AppCompatActivity() {
@@ -43,7 +34,7 @@ import eu.kenway.ecommerce.products.items.*
         setContentView(binding.root)
 
         preferences=getSharedPreferences("SHARED_PREF",Context.MODE_PRIVATE)
-     val email=preferences.getString("EMAIL","")
+        val email=preferences.getString("EMAIL","")
 
 
         binding.apply {
@@ -81,13 +72,21 @@ import eu.kenway.ecommerce.products.items.*
                 it.isChecked=true
                 when(it.itemId)
                 {
-                    R.id.Home -> supportFragmentManager.beginTransaction().replace(R.id.framelayout, Home()).commit()
-                    R.id.Viewcart -> supportFragmentManager.beginTransaction().replace(R.id.framelayout,Cart()).commit()
-                    R.id.orders -> supportFragmentManager.beginTransaction().replace(R.id.framelayout,orders()).commit()
-                            R.id.feedback ->supportFragmentManager.beginTransaction().replace(R.id.framelayout,Feedback()).commit()
-                            R.id.help -> supportFragmentManager.beginTransaction().replace(R.id.framelayout,Help()).commit()
-                            R.id.Logout ->{
-                                 val editor:SharedPreferences.Editor=preferences.edit()
+                    R.id.Home -> {
+                        supportFragmentManager.beginTransaction().replace(R.id.framelayout, Home())
+                            .commit()
+
+                    }
+                    R.id.Viewcart -> supportFragmentManager.beginTransaction().replace(R.id.framelayout,
+                        Cart()
+                    ).commit()
+                    R.id.orders -> supportFragmentManager.beginTransaction().replace(R.id.framelayout,
+                        orders()
+                    ).commit()
+                    R.id.feedback ->supportFragmentManager.beginTransaction().replace(R.id.framelayout,Feedback()).commit()
+                    R.id.help -> supportFragmentManager.beginTransaction().replace(R.id.framelayout,Help()).commit()
+                    R.id.Logout ->{
+                        val editor:SharedPreferences.Editor=preferences.edit()
                         editor.clear()
                         editor.apply()
                         startActivity(Intent(this@Products,MainActivity::class.java))
@@ -95,20 +94,20 @@ import eu.kenway.ecommerce.products.items.*
                     }
 
                 }
-               true
-            }
-
-        }
-}
-
-
-
-
-        override fun onOptionsItemSelected(item: MenuItem): Boolean {
-            if (toggle.onOptionsItemSelected(item)){
                 true
             }
-            return super.onOptionsItemSelected(item)
-        }
 
+        }
     }
+
+
+
+
+      override fun onOptionsItemSelected(item: MenuItem): Boolean {
+          if (toggle.onOptionsItemSelected(item)){
+              true
+          }
+          return super.onOptionsItemSelected(item)
+      }
+
+  }

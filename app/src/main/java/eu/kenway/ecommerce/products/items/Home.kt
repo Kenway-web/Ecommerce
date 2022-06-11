@@ -1,5 +1,6 @@
 package eu.kenway.ecommerce.products. items
 
+import android.app.Dialog
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -19,6 +20,7 @@ import eu.kenway.items.Repository.ItemRepository
 import eu.kenway.items.api.ItemService
 import eu.kenway.items.api.ProductsAdapter
 import eu.kenway.items.api.RetrofitHelper
+import eu.kenway.items.models.ItemList
 import eu.kenway.items.viewmodel.MainViewModel
 import eu.kenway.items.viewmodel.Mainviewmodelfactory
 
@@ -28,6 +30,7 @@ class Home : Fragment() {
     private lateinit var bindingHome:FragmentHomeBinding
     private lateinit var adapter : ProductsAdapter
     lateinit var mainViewModel: MainViewModel
+
 
 
 
@@ -43,16 +46,15 @@ class Home : Fragment() {
         val recycle=bindingHome.recyclerView
         recycle.layoutManager=LinearLayoutManager(requireContext())
 
-        val quoteService= RetrofitHelper.getInstance().create(ItemService::class.java)
-        val repository= ItemRepository(quoteService)
+        val itemService= RetrofitHelper.getInstance().create(ItemService::class.java)
+        val repository= ItemRepository(itemService)
         mainViewModel= ViewModelProvider(this, Mainviewmodelfactory(repository)).get(MainViewModel::class.java)
 
 
         val imageList = ArrayList<SlideModel>() //
-        imageList.add(SlideModel(R.drawable.banner_01, "The animal population decreased by 58 percent in 42 years."))
-        imageList.add(SlideModel(R.drawable.banner_02, "Elephants and tigers may become extinct."))
-        imageList.add(SlideModel(R.drawable.banner_03, "And people do that."))
-
+        imageList.add(SlideModel(R.drawable.banner_01, getString(R.string.catch1)))
+        imageList.add(SlideModel(R.drawable.banner_02, getString(R.string.catch2)))
+        imageList.add(SlideModel(R.drawable.banner_03, getString(R.string.catch3)))
 
 
      bindingHome.imageSlider.setImageList(imageList)
@@ -61,13 +63,16 @@ class Home : Fragment() {
         mainViewModel.items.observe(viewLifecycleOwner, Observer {
             Log.d("Key1",it.data.toString())
             val product = it!!.data
-            adapter = ProductsAdapter(product)
+            adapter = ProductsAdapter(requireContext(),product)
             recycle.adapter = adapter
+
 
         })
 
         return bindingHome.root
     }
+
+
 
 
 }

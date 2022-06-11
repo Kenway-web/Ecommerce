@@ -12,10 +12,44 @@
         <action
             android:id="@+id/action_home2_to_belongingsFragment"
             app:destination="@id/belongingsFragment" />
+        <action
+            android:id="@+id/action_home2_to_help2"
+            app:destination="@id/help2" />
+        <action
+            android:id="@+id/action_home2_to_orders2"
+            app:destination="@id/orders2" />
+        <action
+            android:id="@+id/action_home2_to_help22"
+            app:destination="@id/help2" />
+        <action
+            android:id="@+id/action_home2_to_feedback2"
+            app:destination="@id/feedback2" />
     </fragment>
     <fragment
         android:id="@+id/belongingsFragment"
         android:name="eu.kenway.ecommerce.BelongingsFragment"
         android:label="fragment_belongings"
-        tools:layout="@layout/fragment_belongings" />
+        tools:layout="@layout/fragment_belongings" >
+        <action
+            android:id="@+id/action_belongingsFragment_to_home2"
+            app:destination="@id/home2" />
+        <action
+            android:id="@+id/action_belongingsFragment_to_home22"
+            app:destination="@id/home2" />
+    </fragment>
+    <fragment
+        android:id="@+id/help2"
+        android:name="eu.kenway.ecommerce.products.items.Help"
+        android:label="fragment_help"
+        tools:layout="@layout/fragment_help" />
+    <fragment
+        android:id="@+id/orders2"
+        android:name="eu.kenway.ecommerce.products.items.orders.orders"
+        android:label="fragment_orders"
+        tools:layout="@layout/fragment_orders" />
+    <fragment
+        android:id="@+id/feedback2"
+        android:name="eu.kenway.ecommerce.products.items.Feedback"
+        android:label="fragment_feedback"
+        tools:layout="@layout/fragment_feedback" />
 </navigation>

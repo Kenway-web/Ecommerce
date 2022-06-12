@@ -1,8 +1,7 @@
-package eu.kenway.items.Repository
+package eu.kenway.ecommerce.products.items.home
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import eu.kenway.items.api.ItemService
 import eu.kenway.items.models.ItemList
 
 

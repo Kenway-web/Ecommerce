@@ -18,6 +18,7 @@ import eu.kenway.ecommerce.R
 
 import eu.kenway.ecommerce.databinding.ActivityProductsBinding
 import eu.kenway.ecommerce.products.items.*
+import eu.kenway.ecommerce.products.items.home.Home
 import eu.kenway.ecommerce.products.items.orders.orders
 
 

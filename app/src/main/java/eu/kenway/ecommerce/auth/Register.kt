@@ -6,19 +6,15 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
-import com.google.firebase.ktx.Firebase
 import eu.kenway.ecommerce.R
 import eu.kenway.ecommerce.R.*
 import eu.kenway.ecommerce.databinding.FragmentRegisterBinding
-import eu.kenway.ecommerce.firestore.Firetoreclass
-import eu.kenway.ecommerce.firestore.models.User
 
 
 class Register : Fragment() {
@@ -44,6 +40,8 @@ class Register : Fragment() {
          mProgressDialog.setCanceledOnTouchOutside(false)
 
 
+
+
         val actionBar = (activity as AppCompatActivity?)!!.supportActionBar
 
 
@@ -54,12 +52,11 @@ class Register : Fragment() {
 
 
 
+
         binding.button.setOnClickListener {
 
 
-
-
-            val firstname = binding.firstnamet.toString()
+            val firstname = binding.firstnamet.text.toString()
             val lastname = binding.lastname.toString()
             val email = binding.emailEt.text.toString()
             val password = binding.password.text.toString()
@@ -67,10 +64,38 @@ class Register : Fragment() {
 
             // registerUser()
 
-            if (email.isNotEmpty() && password.isNotEmpty() && confirmpass.isNotEmpty() && firstname.isNotEmpty() && lastname.isNotEmpty()) {
+            if(!email.isValidEmail()||email.isEmpty())
+            {
+                mProgressDialog.hide()
+                Snackbar.make(binding.root, "Invalid email", Snackbar.LENGTH_SHORT).
+                setBackgroundTint(Color.RED).show()
+
+            }
+            else if(firstname.isBlank()||lastname.isBlank())
+            {
+                mProgressDialog.hide()
+                Snackbar.make(binding.root, "First name and last name should not be empty", Snackbar.LENGTH_SHORT).
+                setBackgroundTint(Color.RED).show()
+            }
+
+            else if(password.length<6||password.isEmpty())
+            {
+                mProgressDialog.hide()
+                Snackbar.make(binding.root, "Password shouldn't be empty and should be of 6 characters ", Snackbar.LENGTH_SHORT).
+                setBackgroundTint(Color.RED).show()
+
+            }
+
+           else if(password!=confirmpass||password.isEmpty()||confirmpass.isEmpty())
+            {
+                mProgressDialog.hide()
+                Snackbar.make(binding.root, "Invalid password or Password not matching ", Snackbar.LENGTH_SHORT).
+                setBackgroundTint(Color.RED).show()
+            }
 
 
-                if (password == confirmpass) {
+
+           else  {
 
                     mProgressDialog.show()
                     firebaseAuth.createUserWithEmailAndPassword(email, password)
@@ -79,17 +104,6 @@ class Register : Fragment() {
                               mProgressDialog.hide()
                                 val firebaseUser: FirebaseUser = it.result!!.user!!
 
-
-                                val user=User(
-                                    firebaseUser.uid,
-                                    firstname.trim(),
-                                    lastname.trim(),
-                                    email.trim(),
-
-                                )
-
-
-                              Firetoreclass().registerUser(this,user)
 
                                 // Snackbar.make(binding.root, "You have registered successfully.Your user id is ${firebaseUser.uid}", Snackbar.LENGTH_SHORT).
                                //  setBackgroundTint(Color.GREEN).show()
@@ -106,17 +120,8 @@ class Register : Fragment() {
                                 ).setBackgroundTint(Color.RED).show()
                             }
                         }
-                } else {
-                    mProgressDialog.hide()
-                    // Toast.makeText(requireContext(),"Password not matching",Toast.LENGTH_LONG).show()
-                    Snackbar.make(binding.root, "Password not matching", Snackbar.LENGTH_SHORT).
-                    setBackgroundTint(Color.RED).show()
                 }
 
-            } else {
-                mProgressDialog.hide()
-                Snackbar.make(binding.root, "Enter credentials", Snackbar.LENGTH_SHORT).show()
-            }
 
 
         }
@@ -125,17 +130,8 @@ class Register : Fragment() {
         return binding.root
     }
 
+    fun String.isValidEmail() =
+        isNotEmpty() && android.util.Patterns.EMAIL_ADDRESS.matcher(this).matches()
 
-    fun userRegisterSuccess()
-    {
-        mProgressDialog.hide()
-
-        Toast.makeText(
-           requireActivity(),
-            resources.getString(R.string.register_success),
-            Toast.LENGTH_SHORT
-        ).show()
-
-    }
 }
 

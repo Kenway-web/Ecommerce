@@ -11,22 +11,18 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Ecommerce">
-        <activity
-            android:name=".BelongingActivity"
-            android:exported="false" />
+
         <activity
             android:name=".saMPLEACTIVITY"
             android:exported="false" />
         <activity
             android:name=".products.Products"
             android:exported="false" />
-        <activity
-            android:name=".ProductsActivity"
-            android:exported="false" />
+
         <activity
             android:name=".SplashScreen.SplashScreen"
             android:exported="true"
-            android:screenOrientation="portrait"
+            android:screenOrientation="fullSensor"
             android:theme="@style/Theme.AppCompat.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

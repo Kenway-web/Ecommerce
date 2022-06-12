@@ -1,9 +1,9 @@
-package eu.kenway.items.viewmodel
+package eu.kenway.ecommerce.products.items.home
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import eu.kenway.items.Repository.ItemRepository
+import eu.kenway.ecommerce.products.items.home.ItemRepository
 import eu.kenway.items.models.ItemList
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch

@@ -1,4 +1,4 @@
-package eu.kenway.ecommerce.products. items
+package eu.kenway.ecommerce.products.items.home
 
 import android.app.Dialog
 import android.os.Bundle
@@ -7,23 +7,15 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ProgressBar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.denzcoskun.imageslider.models.SlideModel
 import eu.kenway.ecommerce.R
 
 import eu.kenway.ecommerce.databinding.FragmentHomeBinding
-import eu.kenway.items.Repository.ItemRepository
-import eu.kenway.items.api.ItemService
-import eu.kenway.items.api.ProductsAdapter
 import eu.kenway.items.api.RetrofitHelper
-import eu.kenway.items.models.ItemList
-import eu.kenway.items.viewmodel.MainViewModel
-import eu.kenway.items.viewmodel.Mainviewmodelfactory
 
 
 class Home : Fragment() {
@@ -84,8 +76,6 @@ class Home : Fragment() {
 
         return bindingHome.root
     }
-
-
 
 
 }

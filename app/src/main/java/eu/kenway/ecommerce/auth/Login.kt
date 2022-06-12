@@ -4,29 +4,27 @@ import android.app.Dialog
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
+import android.graphics.Color
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.navigation.fragment.findNavController
+import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import eu.kenway.ecommerce.products.Products
 import eu.kenway.ecommerce.R
 import eu.kenway.ecommerce.databinding.FragmentLoginBinding
-import eu.kenway.ecommerce.firestore.Firetoreclass
-import eu.kenway.ecommerce.firestore.models.User
-import kotlin.properties.Delegates
 
 
 class Login : Fragment() {
 
     private lateinit var bindinglogin: FragmentLoginBinding
     private lateinit var firebaseAuth: FirebaseAuth
-   private lateinit var sharedPreferences: SharedPreferences
+    private lateinit var sharedPreferences: SharedPreferences
     private lateinit var mProgressDialog: Dialog
 
     var isRemembered=false
@@ -39,7 +37,16 @@ class Login : Fragment() {
         sharedPreferences= requireActivity().getSharedPreferences("SHARED_PREF", Context.MODE_PRIVATE)
 
         bindinglogin = FragmentLoginBinding.inflate(inflater, container, false)
+
         isRemembered=sharedPreferences.getBoolean("CHECKBOX",false)
+
+        if(isRemembered)
+        {
+            startActivity(Intent(requireContext(),Products::class.java))
+            activity?.finish()
+
+
+        }
 
         mProgressDialog = Dialog(requireContext())
         mProgressDialog.setContentView(R.layout.dialog_progress)
@@ -57,12 +64,14 @@ class Login : Fragment() {
         bindinglogin.button.setOnClickListener {
             val email = bindinglogin.emailEt.text.toString()
             val password = bindinglogin.passET.text.toString()
+            val checked:Boolean=bindinglogin.checkbox.isChecked
             mProgressDialog.show()
 
 
 
             val editor:SharedPreferences.Editor=sharedPreferences.edit()
             editor.putString("EMAIL",email)
+            editor.putBoolean("CHECKBOX",checked)
 
             editor.apply()
 
@@ -77,6 +86,15 @@ class Login : Fragment() {
 
     private fun checkCredentials(email: String, password: String) {
 
+        // check pass
+        if (email.isBlank() || password.isBlank()) {
+            mProgressDialog.hide()
+            Snackbar.make(bindinglogin.root, "email and password should not be empty", Snackbar.LENGTH_SHORT).
+            setBackgroundTint(Color.RED).show()
+            return
+        }
+
+
         if (email.isNotEmpty() && password.isNotEmpty()) {
 
 
@@ -87,13 +105,14 @@ class Login : Fragment() {
                     mProgressDialog.hide()
 
                     val firebaseUser: FirebaseUser = it.result!!.user!!
-                    Firetoreclass().getUserDetails(this@Login)
+
                     startActivity(Intent(requireContext(), Products::class.java))
 
                 } else {
                     mProgressDialog.hide()
-                    Toast.makeText(requireContext(), it.exception.toString(), Toast.LENGTH_LONG)
-                        .show()
+
+                    Snackbar.make(bindinglogin.root, it.exception.toString(), Snackbar.LENGTH_SHORT).
+                    setBackgroundTint(Color.RED).show()
                 }
             }
 
@@ -105,22 +124,5 @@ class Login : Fragment() {
 
     }
 
-    // TODO Step 7: Create a function to notify user that logged in success and details are fetched from Cloud Firestore.
-    // START
-    /**
-     * A function to notify user that logged in success and get the user details from the FireStore database after authentication.
-     */
-    fun userLoggedInSuccess(user: User) {
 
-
-        // Print the user details in the log as of now.
-        Log.i("First Name: ", user.firstName)
-        Log.i("Last Name: ", user.lastName)
-        Log.i("Email: ", user.email)
-
-        // Redirect the user to Main Screen after log in.
-        startActivity(Intent(requireContext(), Products::class.java))
-        // END
-
-    }
 }

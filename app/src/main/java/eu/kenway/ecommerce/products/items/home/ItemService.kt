@@ -1,4 +1,4 @@
-package eu.kenway.items.api
+package eu.kenway.ecommerce.products.items.home
 
 
 import eu.kenway.items.models.ItemList

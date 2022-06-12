@@ -7,7 +7,6 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import eu.kenway.ecommerce.R
-import eu.kenway.ecommerce.products.items.orders.models.Items
 
 class OrdersAdapter(private val orders: List<Items>) : RecyclerView.Adapter<OrdersAdapter.YourOrderViewHolder>() {
 

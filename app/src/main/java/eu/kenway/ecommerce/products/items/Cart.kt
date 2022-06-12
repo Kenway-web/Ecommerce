@@ -3,6 +3,7 @@ package eu.kenway.ecommerce.products.items
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.SharedPreferences
+import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -14,6 +15,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import com.google.android.material.snackbar.Snackbar
 import eu.kenway.ecommerce.R
 import eu.kenway.ecommerce.carttable.CartAdapater
 import eu.kenway.ecommerce.carttable.CartViewModel
@@ -49,7 +51,8 @@ class Cart : Fragment() {
             if(data.isEmpty())
             {
                 (activity as AppCompatActivity).supportActionBar?.title = "cart (${data.size} items)"
-                Toast.makeText(requireContext(),"Empty Cart", Toast.LENGTH_SHORT).show()
+                Snackbar.make(bindingCart.root, "Empty cart", Snackbar.LENGTH_SHORT).
+                setBackgroundTint(Color.RED).show()
             }
 
             else{

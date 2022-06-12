@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ProgressBar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -30,6 +31,7 @@ class Home : Fragment() {
     private lateinit var bindingHome:FragmentHomeBinding
     private lateinit var adapter : ProductsAdapter
     lateinit var mainViewModel: MainViewModel
+    private lateinit var mProgressDialog: Dialog
 
 
 
@@ -41,6 +43,12 @@ class Home : Fragment() {
 
         bindingHome = FragmentHomeBinding.inflate(inflater, container, false)
         (activity as AppCompatActivity).supportActionBar?.title = "Home"
+        mProgressDialog = Dialog(requireContext())
+        mProgressDialog.setContentView(R.layout.dialog_progress)
+        mProgressDialog.setCancelable(false)
+        mProgressDialog.setCanceledOnTouchOutside(false)
+
+        mProgressDialog.show()
 
 
         val recycle=bindingHome.recyclerView
@@ -61,8 +69,13 @@ class Home : Fragment() {
 
 
         mainViewModel.items.observe(viewLifecycleOwner, Observer {
+
             Log.d("Key1",it.data.toString())
             val product = it!!.data
+            if(!product.isEmpty())
+            {
+                mProgressDialog.hide()
+            }
             adapter = ProductsAdapter(requireContext(),product)
             recycle.adapter = adapter
 

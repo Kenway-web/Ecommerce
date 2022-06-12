@@ -38,6 +38,8 @@
 
     </androidx.cardview.widget.CardView>
 
+
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="408dp"

@@ -10,6 +10,7 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.TextView
 import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.core.view.GravityCompat
 import com.google.android.material.navigation.NavigationView
 import eu.kenway.ecommerce.MainActivity
 import eu.kenway.ecommerce.R
@@ -75,16 +76,33 @@ import eu.kenway.ecommerce.products.items.orders.orders
                     R.id.Home -> {
                         supportFragmentManager.beginTransaction().replace(R.id.framelayout, Home())
                             .commit()
+                        drawerLayout.closeDrawer(GravityCompat.START)
 
                     }
-                    R.id.Viewcart -> supportFragmentManager.beginTransaction().replace(R.id.framelayout,
-                        Cart()
-                    ).commit()
-                    R.id.orders -> supportFragmentManager.beginTransaction().replace(R.id.framelayout,
-                        orders()
-                    ).commit()
-                    R.id.feedback ->supportFragmentManager.beginTransaction().replace(R.id.framelayout,Feedback()).commit()
-                    R.id.help -> supportFragmentManager.beginTransaction().replace(R.id.framelayout,Help()).commit()
+                    R.id.Viewcart -> {
+                        supportFragmentManager.beginTransaction().replace(
+                            R.id.framelayout,
+                            Cart()
+                        ).commit()
+                        drawerLayout.closeDrawer(GravityCompat.START)
+                    }
+                    R.id.orders -> {
+                        supportFragmentManager.beginTransaction().replace(
+                            R.id.framelayout,
+                            orders()
+                        ).commit()
+                        drawerLayout.closeDrawer(GravityCompat.START)
+                    }
+                    R.id.feedback -> {
+                        supportFragmentManager.beginTransaction()
+                            .replace(R.id.framelayout, Feedback()).commit()
+                        drawerLayout.closeDrawer(GravityCompat.START)
+                    }
+                    R.id.help -> {
+                        supportFragmentManager.beginTransaction().replace(R.id.framelayout, Help())
+                            .commit()
+                        drawerLayout.closeDrawer(GravityCompat.START)
+                    }
                     R.id.Logout ->{
                         val editor:SharedPreferences.Editor=preferences.edit()
                         editor.clear()

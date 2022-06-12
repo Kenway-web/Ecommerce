@@ -1,4 +1,4 @@
-package eu.kenway.ecommerce.products.items.orders.models
+package eu.kenway.ecommerce.products.items.orders
 
 import com.google.gson.annotations.SerializedName
 

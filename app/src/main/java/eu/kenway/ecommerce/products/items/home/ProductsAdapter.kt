@@ -12,12 +12,15 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import eu.kenway.ecommerce.R
+import eu.kenway.ecommerce.carttable.CartEntity
 import eu.kenway.ecommerce.saMPLEACTIVITY
 import eu.kenway.items.models.Data
+import eu.kenway.items.models.ItemList
 
 
-class ProductsAdapter(val context:Context,private val belongings :  List<Data>) : RecyclerView.Adapter<ProductsAdapter.ProductViewHolder>() {
+class ProductsAdapter(val context:Context) : RecyclerView.Adapter<ProductsAdapter.ProductViewHolder>() {
 
+     val belongings = ArrayList<Data>()
     class ProductViewHolder(item : View) : RecyclerView.ViewHolder(item){
         val title= item.findViewById<TextView>(R.id.title)!!
         val price= item.findViewById<TextView>(R.id.price)!!
@@ -93,5 +96,13 @@ class ProductsAdapter(val context:Context,private val belongings :  List<Data>) 
         return belongings.size
     }
 
+    fun updatelist(newlist:List<Data>)
+    {
+        belongings.clear()
+        belongings.addAll(newlist)
+        notifyDataSetChanged()
+
+
+    }
 
 }

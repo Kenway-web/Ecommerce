@@ -13,6 +13,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.denzcoskun.imageslider.models.SlideModel
 import eu.kenway.ecommerce.R
+import eu.kenway.ecommerce.carttable.CartAdapater
 
 import eu.kenway.ecommerce.databinding.FragmentHomeBinding
 import eu.kenway.items.api.RetrofitHelper
@@ -60,16 +61,18 @@ class Home : Fragment() {
      bindingHome.imageSlider.setImageList(imageList)
 
 
-        mainViewModel.items.observe(viewLifecycleOwner, Observer {
+        bindingHome.recyclerView.layoutManager=LinearLayoutManager(requireContext())
+        val adapter= ProductsAdapter(requireContext())
+        bindingHome.recyclerView.adapter=adapter
 
-            Log.d("Key1",it.data.toString())
-            val product = it!!.data
-            if(!product.isEmpty())
-            {
+        mainViewModel.items.observe(viewLifecycleOwner, Observer {list->
+
+
+            list?.let{
                 mProgressDialog.hide()
+                val product = it!!.data
+                adapter.updatelist(product)
             }
-            adapter = ProductsAdapter(requireContext(),product)
-            recycle.adapter = adapter
 
 
         })

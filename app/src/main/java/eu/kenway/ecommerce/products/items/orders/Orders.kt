@@ -13,6 +13,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import eu.kenway.ecommerce.R
 import eu.kenway.ecommerce.databinding.FragmentOrdersBinding
+import eu.kenway.ecommerce.products.items.home.ProductsAdapter
 import eu.kenway.items.api.RetrofitHelper
 
 
@@ -50,19 +51,24 @@ class orders : Fragment() {
 
         val orderservice=RetrofitHelper.getInstance().create(orderService::class.java)
         val repository=orderRepository(orderservice)
+
+        bindingorders.recyclerView.layoutManager=LinearLayoutManager(requireContext())
+        val adapter= OrdersAdapter(requireContext())
+        bindingorders.recyclerView.adapter=adapter
         viewmodel=ViewModelProvider(this,oMainviewmodelfactory(repository)).get(oMainViewModel::class.java)
 
-        viewmodel.items.observe(viewLifecycleOwner, Observer {
-            mProgressDialog.hide()
-            Log.d("Key1",it.toString())
-            val orders=it.data[0].arrData
+        viewmodel.items.observe(viewLifecycleOwner, Observer { list->
+
+            list?.let{
+                mProgressDialog.hide()
+                val product = it!!.data[0].arrData
+                adapter.updatelist(product)
+            }
 
 
-            adapter=OrdersAdapter(orders)
-            recycle.adapter=adapter
+        }
 
-
-        })
+        )
 
 
 

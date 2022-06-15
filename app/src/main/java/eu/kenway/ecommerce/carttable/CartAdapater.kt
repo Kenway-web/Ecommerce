@@ -1,6 +1,8 @@
 package eu.kenway.ecommerce.carttable
 
+import android.content.Context
 import android.view.LayoutInflater
+import android.view.OnReceiveContentListener
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
@@ -10,7 +12,10 @@ import androidx.recyclerview.widget.RecyclerView
 import eu.kenway.ecommerce.R
 import org.w3c.dom.Text
 
-class CartAdapater(private val data: List<CartEntity>, private val cartViewModel: CartViewModel) : RecyclerView.Adapter<CartAdapater.Viewholder>() {
+class CartAdapater(private val context: Context,
+                   private val listener: Icartvadapter) : RecyclerView.Adapter<CartAdapater.Viewholder>() {
+
+    val itemslist=ArrayList<CartEntity>()
     class Viewholder(view: View):RecyclerView.ViewHolder(view) {
         val titletxt=view.findViewById<TextView>(R.id.title)
         val pricetxt=view.findViewById<TextView>(R.id.price)
@@ -21,13 +26,16 @@ class CartAdapater(private val data: List<CartEntity>, private val cartViewModel
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Viewholder {
-        val view= LayoutInflater.from(parent.context).inflate(R.layout.cartdetails,parent,false)
-        val holder=Viewholder(view)
-        return holder
+        val viewholder=Viewholder( LayoutInflater.from(context).inflate(R.layout.cartdetails,parent,false))
+         viewholder.deletebtn.setOnClickListener {
+          listener.onItemClicked(itemslist[viewholder.adapterPosition])
+      }
+        return viewholder
     }
 
     override fun onBindViewHolder(holder: Viewholder, position: Int) {
-        val datalist=data[position]
+        val datalist=itemslist[position]
+
         holder.titletxt.text=datalist.Itemname
         holder.pricetxt.text=datalist.price
         holder.quentitytxt.text=datalist.quantity
@@ -40,12 +48,21 @@ class CartAdapater(private val data: List<CartEntity>, private val cartViewModel
             "Salt"->holder.imageitem.setImageResource(R.drawable.product_04)
             else ->holder.imageitem.setImageResource(R.drawable.product_02)
         }
-        holder.deletebtn.setOnClickListener {
-            cartViewModel.deleteItem(datalist)
-        }
+      //  holder.deletebtn.setOnClickListener {
+        //    cartViewModel.deleteItem(datalist)
+        //}
     }
 
     override fun getItemCount(): Int {
-        return data.size
+        return itemslist.size
+    }
+
+    fun updatelist(newlist:List<CartEntity>)
+    {
+      itemslist.clear()
+        itemslist.addAll(newlist)
+        notifyDataSetChanged()
+
+
     }
 }

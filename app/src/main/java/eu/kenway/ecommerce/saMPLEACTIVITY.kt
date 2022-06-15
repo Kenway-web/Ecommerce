@@ -5,6 +5,7 @@ import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
+import android.view.MenuItem
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
@@ -28,6 +29,8 @@ class saMPLEACTIVITY : AppCompatActivity() {
         // showing the back button in action bar
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true)
+            actionBar.setHomeAsUpIndicator(R.drawable.ic_baseline_arrow_back_ios_24)
+
         }
 
         val bundle = intent.extras
@@ -78,9 +81,15 @@ class saMPLEACTIVITY : AppCompatActivity() {
     }
 
 
-
-    override fun onBackPressed() {
-        val first = Intent(this, Products::class.java)
-        startActivity(first)
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+      when(item.getItemId())
+      {
+          android.R.id.home->{
+              onBackPressed()
+              return true
+          }
+      }
+       return super.onOptionsItemSelected(item)
     }
+
 }

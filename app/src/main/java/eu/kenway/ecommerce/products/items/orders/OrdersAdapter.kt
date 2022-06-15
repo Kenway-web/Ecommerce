@@ -1,5 +1,6 @@
 package eu.kenway.ecommerce.products.items.orders
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -7,8 +8,11 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import eu.kenway.ecommerce.R
+import eu.kenway.items.models.Data
 
-class OrdersAdapter(private val orders: List<Items>) : RecyclerView.Adapter<OrdersAdapter.YourOrderViewHolder>() {
+class OrdersAdapter( private val context: Context) : RecyclerView.Adapter<OrdersAdapter.YourOrderViewHolder>() {
+
+    val orders=ArrayList<Items>()
 
     class YourOrderViewHolder(item: View): RecyclerView.ViewHolder(item) {
         val title=item.findViewById<TextView>(R.id.title)
@@ -50,6 +54,14 @@ class OrdersAdapter(private val orders: List<Items>) : RecyclerView.Adapter<Orde
 
     override fun getItemCount(): Int {
         return orders.size
+    }
+    fun updatelist(newlist:List<Items>)
+    {
+        orders.clear()
+        orders.addAll(newlist)
+        notifyDataSetChanged()
+
+
     }
 
 }
